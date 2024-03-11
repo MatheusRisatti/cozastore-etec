@@ -25,8 +25,8 @@ namespace Cozastore.Models;
 
         public string DescricaoCompleta { get; set; }
 
-        [Display (nameof = "SKU")]
-        [StringLength (10, ErrorMessage "O SKU deve conter no máximo 10 caracteres")]
+        [Display (Name = "SKU")]
+        [StringLength (10, ErrorMessage = "O SKU deve conter no máximo 10 caracteres")]
 
         public string SKU { get; set; }
 
@@ -61,7 +61,9 @@ namespace Cozastore.Models;
 
         public int CategoriaId { get; set; }
 
-        [ForeingKey ("CategoriaId")]
+        [ForeignKey ("CategoriaId")]
         public Categoria Categoria { get; set; }
+
+        public ICollection<Estoque> Estoque { get; set; }
 
     }

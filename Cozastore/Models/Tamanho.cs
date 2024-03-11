@@ -17,4 +17,6 @@ namespace Cozastore.Models;
         [Required(ErrorMessage = "Digite o nome porfa")]
         [StringLength(30, ErrorMessage = "o Nome deve possuir no máximo 30 caracteres")]
         public string Nome { get; set; }
+
+        public ICollection<Estoque> Estoque { get; set; }
     }
