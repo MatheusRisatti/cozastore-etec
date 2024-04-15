@@ -8,7 +8,7 @@ public class Cor
 {
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int CorId { get; set; }
+    public int Id { get; set; }
     
     [Required(ErrorMessage = "Digite o nome porfa")]
     [StringLength(30, ErrorMessage = "o Nome deve possuir no máximo 30 caracteres")]
