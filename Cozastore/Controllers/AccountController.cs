@@ -37,9 +37,29 @@ namespace Cozastore.Controllers;
         public async Task<IActionResult> Login(LoginVM login){
             if (ModelState.IsValid){
                 string userName = login.Email;
-                if (IsValidEmail(userName)){
-                    
+                if (IsValidEmail(userName))
+                {
+                    var user = await _userManager.FindByEmailAsync(userName);
+                    if (user != null);
+                        userName = user.UserName;
                 }
+
+                var result = await _signInManager.PasswordSignInAsync(
+                    userName,login.Senha, login.Lembrar, lockoutOnFailure: true
+                );
+
+                if (result.Succeeded)
+                {
+                    _logger.LogInformation($"Usario {login.Email} acessou o sistema!");
+                    return LocalRedirect(login.UrlRetorno);
+                }
+                if (result.IsLockedOut)
+                {
+                    _logger.LogWarning($"Usario {login.Email} está bloqueado!");
+                    ModelState.AddModelError(string.Empty, "Conta bloqueado! Aguarde alguns minutos para continuar!");
+                }
+
+                ModelState.AddModelError(string.Empty, "Usuario e/ou Senha invalidos!!!");
             }
             return View(login);
         }

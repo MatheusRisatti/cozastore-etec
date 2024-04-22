@@ -34,7 +34,7 @@ namespace Cozastore.Controllers
             }
 
             var cor = await _context.Cores
-                .FirstOrDefaultAsync(m => m.CorId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (cor == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace Cozastore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CorId,Nome,CodigoHexa")] Cor cor)
+        public async Task<IActionResult> Create([Bind("Id,Nome,CodigoHexa")] Cor cor)
         {
             if (ModelState.IsValid)
             {
@@ -86,9 +86,9 @@ namespace Cozastore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CorId,Nome,CodigoHexa")] Cor cor)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,CodigoHexa")] Cor cor)
         {
-            if (id != cor.CorId)
+            if (id != cor.Id)
             {
                 return NotFound();
             }
@@ -102,7 +102,7 @@ namespace Cozastore.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CorExists(cor.CorId))
+                    if (!CorExists(cor.Id))
                     {
                         return NotFound();
                     }
@@ -125,7 +125,7 @@ namespace Cozastore.Controllers
             }
 
             var cor = await _context.Cores
-                .FirstOrDefaultAsync(m => m.CorId == id);
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (cor == null)
             {
                 return NotFound();
@@ -151,7 +151,7 @@ namespace Cozastore.Controllers
 
         private bool CorExists(int id)
         {
-            return _context.Cores.Any(e => e.CorId == id);
+            return _context.Cores.Any(e => e.Id == id);
         }
     }
 }
