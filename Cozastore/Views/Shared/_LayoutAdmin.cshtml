@@ -108,12 +108,12 @@
       </ul>
     </div>
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
-      <div class="mx-3">
-        <a asp-controller="Home" asp-action="Index" class="btn bg-gradient-danger w-100" type="button">
+      <form asp-controller="Account" asp-action="Logout" method="post" class="mx-3">
+        <button  class="btn bg-gradient-danger w-100" type="submit">
           <i class="material-icons opacity-10">logout</i>
           Sair
-        </a>
-      </div>
+        </button>
+      </form>
     </div>
   </aside>
   <main class="main-content border-radius-lg d-flex flex-column" style="min-height: 100vh;">
